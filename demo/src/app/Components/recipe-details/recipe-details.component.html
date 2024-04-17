@@ -1,0 +1,27 @@
+<app-home [showH1]="false"></app-home>
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-12 col-md-6">
+            <img [src]="recipe.image" class="img-fluid" alt="{{ recipe.name }} Image">
+        </div>
+        <div class="col-12 col-md-6">
+            <h2>{{ recipe.name }}</h2>
+            <p class="text-muted"><strong>Cuisine:</strong> {{ recipe.cuisine }}</p>
+            <p class="text-muted"><strong>Servings:</strong> {{ recipe.servings }}</p>
+            <p class="text-muted"><strong>Prep Time:</strong> {{ recipe.prepTimeMinutes }} mins</p>
+            <p class="text-muted"><strong>Cook Time:</strong> {{ recipe.cookTimeMinutes }} mins</p>
+            <p class="text-muted"><strong>Difficulty:</strong> {{ recipe.difficulty }}</p>
+            <p class="text-muted"><strong>Calories:</strong> {{ recipe.caloriesPerServing }} per serving</p>
+            <h5>Ingredients:</h5>
+            <ul>
+                <li *ngFor="let ingredient of recipe.ingredients">{{ ingredient }}</li>
+            </ul>
+            <h5>Instructions:</h5>
+            <ol>
+                <li *ngFor="let instruction of recipe.instructions">{{ instruction }}</li>
+            </ol>
+            <p class="text-muted">Rating: ★ {{ recipe.rating }} ({{ recipe.reviewCount }} reviews)</p>
+        </div>
+    </div>
+</div>
+

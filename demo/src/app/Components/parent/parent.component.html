@@ -1,0 +1,8 @@
+<app-home [showH1]="false"> </app-home>
+  <br><br>
+  <select class="form-select mb-3"  aria-label="Filter" style="width: 400px;" [(ngModel)]="SelectedCat" (change)="Filter()">
+    <option [value]="0" selected>All Categories</option>
+    <option *ngFor="let category of uniqueCategories" [value]="category">{{category}}</option>
+  </select>
+  <app-order [products]="filteredCatgs" (OutTotalPrice)="OnTotalPrice($event)"></app-order>
+  <h2>Total Price:{{total|usdToEgp}} EGP</h2>

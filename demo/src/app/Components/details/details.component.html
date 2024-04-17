@@ -1,0 +1,9 @@
+<app-home [showH1]="false"></app-home>
+<h1>Name: {{product?.title}}</h1>
+<h4>Brand: {{product?.brand}}</h4>
+<h4>Category: {{product?.category}}</h4>
+<h4>Description: {{product?.description}}</h4>
+<h4>Price: {{product?.price}}</h4>
+<h4>Rating :{{product?.rating}}</h4>
+
+<img *ngIf="product && product.images && product.images.length > 0" [src]="product.images[0]" alt="Product Image">

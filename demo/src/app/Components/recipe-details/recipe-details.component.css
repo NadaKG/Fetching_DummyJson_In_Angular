@@ -1,0 +1,21 @@
+img {
+    max-height: 400px;
+    margin-bottom: 20px;
+}
+
+h2 {
+    margin-bottom: 10px;
+}
+
+p, ul, ol {
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+.text-muted {
+    color: #6c757d!important;
+}
+
+li {
+    line-height: 1.6;
+}

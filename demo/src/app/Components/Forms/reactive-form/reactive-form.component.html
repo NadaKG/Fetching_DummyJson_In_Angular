@@ -1,0 +1,111 @@
+<app-home [showH1]="false"> </app-home>
+<br>
+<h1>Sign Up</h1><br>
+<!-- <h1>{{fullName?.errors | json}}</h1> -->
+<!-- <h1>{{userRegisterForm.value| json}} hi</h1> -->
+<form [formGroup]="userRegisterForm" (ngSubmit)="Register()">
+  <div class="form-floating mb-3">
+    <input type="text" class="form-control" id="floatingInput" placeholder="Full Name" formControlName="fullName">
+    <label for="floatingInput">Full Name</label>
+    <div *ngIf="fullName?.invalid && (fullName?.touched || fullName?.dirty)">
+      <small class="alert alert-danger" *ngIf="fullName?.errors?.['required']">Full Name is required.</small>
+      <small class="alert alert-danger" *ngIf="fullName?.errors?.['pattern']">Full Name must be alphabets between 3-30
+        characters.</small>
+    </div>
+  </div>
+
+  <div class="form-floating mb-3">
+    <input type="email" class="form-control" id="floatingInput2" placeholder="name@example.com" formControlName="email">
+    <label for="floatingInput2">Email address</label>
+    <div *ngIf="email?.invalid && (email?.touched || email?.dirty)">
+      <small class="alert alert-danger" *ngIf="email?.errors?.['required']">Email is required.</small>
+      <small class="alert alert-danger" *ngIf="email?.errors?.['email']">Please enter a valid email address.</small>
+    </div>
+  </div>
+
+  <div class="form-floating mb-3">
+    <input type="text" class="form-control" id="floatingInput3" placeholder="Phone" formControlName="phone">
+    <label for="floatingInput3">Phone Number</label>
+  </div>
+
+  <div formGroupName="address">
+    <div class="form-floating mb-3">
+      <input type="text" class="form-control" id="floatingInput4" placeholder="Country" formControlName="country">
+      <label for="floatingInput4">Country</label>
+      <div
+        *ngIf="userRegisterForm.get('address')?.get('country')?.invalid && (userRegisterForm.get('address')?.get('country')?.touched || userRegisterForm.get('address')?.get('country')?.dirty)">
+        <small class="alert alert-danger">Country is required.</small>
+      </div>
+    </div>
+
+    <div class="form-floating mb-3">
+      <input type="text" class="form-control" id="floatingInput5" placeholder="City" formControlName="city">
+      <label for="floatingInput5">City</label>
+      <div
+        *ngIf="userRegisterForm.get('address')?.get('city')?.invalid && (userRegisterForm.get('address')?.get('city')?.touched || userRegisterForm.get('address')?.get('city')?.dirty)">
+        <small class="alert alert-danger">City is required.</small>
+      </div>
+    </div>
+
+    <div class="form-floating mb-3">
+      <input type="text" class="form-control" id="floatingInput6" placeholder="Street" formControlName="street">
+      <label for="floatingInput6">Street</label>
+      <div
+        *ngIf="userRegisterForm.get('address')?.get('street')?.invalid && (userRegisterForm.get('address')?.get('street')?.touched || userRegisterForm.get('address')?.get('street')?.dirty)">
+        <small class="alert alert-danger">Street is required.</small>
+      </div>
+    </div>
+
+    <div class="form-floating mb-3">
+      <input type="text" class="form-control" id="floatingInput7" placeholder="PostalCode" formControlName="postalCode">
+      <label for="floatingInput7">Postal Code</label>
+      <div
+        *ngIf="userRegisterForm.get('address')?.get('postalCode')?.invalid && (userRegisterForm.get('address')?.get('postalCode')?.touched || userRegisterForm.get('address')?.get('postalCode')?.dirty)">
+        <small class="alert alert-danger"
+          *ngIf="userRegisterForm.get('address.postalCode')?.errors?.['required']">Postal Code is required.</small>
+        <small class="alert alert-danger" *ngIf="userRegisterForm.get('address.postalCode')?.errors?.['pattern']">Postal
+          Code must be 5 digits.</small>
+      </div>
+    </div>
+  </div>
+  <div class="form-floating">
+    <input type="password" class="form-control" id="floatingPassword" placeholder="Password" formControlName="password">
+    <label for="floatingPassword">Password</label>
+  </div>
+  <div class="form-floating">
+    <input type="password" class="form-control" id="floatingPassword2" placeholder="Confirm Password"
+      formControlName="confirmpassword">
+    <label for="floatingPassword2">Confirm Password</label>
+    <div class="alert alert-danger"
+      *ngIf="(confirmpassword?.touched && password?.touched)&&(userRegisterForm.errors?.['Password Unmatched']||confirmpassword?.invalid)">
+      <small *ngIf="confirmpassword?.errors?.['required']">You Must Confirm Password</small>
+      <small *ngIf="userRegisterForm?.errors?.['Password Unmatched']">Password Does Not Match</small>
+    </div>
+  </div>
+
+
+  <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+    <input type="radio" class="btn-check" name="referral" id="btnradio1" autocomplete="off" formControlName="referral"
+      value="social">
+    <label class="btn btn-outline-primary" for="btnradio1">Social</label>
+
+    <input type="radio" class="btn-check" name="referral" id="btnradio2" autocomplete="off" formControlName="referral"
+      value="friends">
+    <label class="btn btn-outline-primary" for="btnradio2">Friends</label>
+
+    <input type="radio" class="btn-check" name="referral" id="btnradio3" autocomplete="off" formControlName="referral"
+      value="other">
+    <label class="btn btn-outline-primary" for="btnradio3">Other</label>
+  </div>
+  <div class="form-floating mb-3" *ngIf="referral?.value === 'other'">
+    <input type="text" class="form-control" id="floatingInput" placeholder="Enter Other"
+      formControlName="referralother">
+    <label for="floatingInput">Other</label>
+    <div [hidden]="referralother?.valid|| referralother?.untouched">
+      <small *ngIf="referralother?.errors?.['required']">
+        This Field Is Required
+      </small>
+    </div>
+  </div><br><br>
+  <button class="btn btn-primary" type="submit" [disabled]="userRegisterForm.invalid">Register</button>
+</form>

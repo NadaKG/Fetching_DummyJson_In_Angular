@@ -1,0 +1,76 @@
+<app-home [showH1]="false"> </app-home>
+<br>
+<h1>Add New Product</h1>
+<br>
+<form action="" (ngSubmit)="Add()" #prdForm="ngForm">
+    <div class="form-floating mb-3">
+        <input type="text" class="form-control" id="floatingInput" placeholder="Enter Title" name="title" [(ngModel)]="newproduct.title" required pattern="[A-Za-z]{4}" #title="ngModel">
+        <label for="floatingInput">Product Title</label>
+        <div [hidden]="title.valid||title.untouched">
+            <small class="alert alert-danger" [hidden]="!title.errors?.['required']">Title of product is required</small>
+            <small class="alert alert-danger" [hidden]="!title.errors?.['pattern']">Title of product must be 4 letters only</small>
+        </div>
+    </div>
+
+    <div class="form-floating mb-3">
+        <input type="number" class="form-control" id="floatingPassword" placeholder="Enter Price" name="price" [(ngModel)]="newproduct.price" required #price="ngModel">
+        <label for="floatingPassword">Product Price</label>
+        <div [hidden]="price.valid||price.untouched">
+            <small class="alert alert-danger" [hidden]="!price.errors?.['required']">Price of product is required</small>
+        </div>
+    </div>
+
+    <div class="form-floating mb-3">
+        <input type="text" class="form-control" id="floating2" placeholder="Enter Brand" name="brand" [(ngModel)]="newproduct.brand" required pattern="[A-Za-z]" #brand="ngModel">
+        <label for="floating2">Product Brand</label>
+        <div [hidden]="brand.valid||brand.untouched">
+            <small class="alert alert-danger" [hidden]="!brand.errors?.['required']">Brand of product is required</small>
+            <small class="alert alert-danger" [hidden]="!brand.errors?.['pattern']">Brand of product can only be letters </small>
+        </div>
+    </div>
+
+    <div class="form-floating mb-3">
+        <input type="text" class="form-control" id="floating3" placeholder="Enter Category" name="category" [(ngModel)]="newproduct.category" pattern="[A-Za-z]" required #category="ngModel">
+        <label for="floating3">Product Category</label>
+        <div [hidden]="category.valid||category.untouched">
+            <small class="alert alert-danger" [hidden]="!category.errors?.['required']">Category of product is required</small>
+            <small class="alert alert-danger" [hidden]="!category.errors?.['pattern']">Category of product can only be letters </small>
+        </div>
+    </div>
+
+    <div class="form-floating mb-3">
+        <input type="text" class="form-control" id="floating4" placeholder="Enter Description" name="description" [(ngModel)]="newproduct.description" required #description="ngModel">
+        <label for="floating4">Product Description</label>
+        <div [hidden]="description.valid||description.untouched">
+            <small class="alert alert-danger" [hidden]="!description.errors?.['required']">Description of product is required</small>
+        </div>
+    </div>
+
+    <div class="form-floating mb-3">
+        <input type="number" class="form-control" id="floating5" placeholder="Enter Discount Percentage" name="discountPercentage" [(ngModel)]="newproduct.discountPercentage" required #discountPercentage="ngModel">
+        <label for="floating5">Product Discount Percentage</label>
+        <div [hidden]="discountPercentage.valid||discountPercentage.untouched">
+            <small class="alert alert-danger" [hidden]="!discountPercentage.errors?.['required']">Discount Percentage is required</small>
+        </div>
+    </div>
+
+    <div class="form-floating mb-3">
+        <input type="text" class="form-control" id="floating6" placeholder="Enter Rating" name="rating" [(ngModel)]="newproduct.rating" required #rating="ngModel">
+        <label for="floating6">Product Rating</label>
+        <div [hidden]="rating.valid||rating.untouched">
+            <small class="alert alert-danger" [hidden]="!rating.errors?.['required']">Rating of product is required</small>
+        </div>
+    </div>
+
+    <div class="form-floating mb-3">
+        <input type="number" class="form-control" id="floating7" placeholder="Product ID" name="id" [(ngModel)]="newproduct.id" required #inpId="ngModel">
+        <label for="floating7">Product Id</label>
+        <div [hidden]="inpId.valid||inpId.untouched">
+            <small class="alert alert-danger" [hidden]="!inpId.errors?.['required']">Product ID is required</small>
+        </div>
+    </div>
+
+    <button class="btn btn-dark" [disabled]="prdForm.invalid">Add Product</button>
+</form>
+
+<h1>{{newproduct | json}}</h1>

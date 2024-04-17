@@ -1,0 +1,25 @@
+<div class="container">
+  <div class="card" style="width: 18rem;" *ngFor="let p of products; trackBy: trackbyID" appShadowOnHover>
+    <img src="{{p.images[0]}}" class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">{{p.title}}</h5>
+      <p class="card-text">{{p.description}}</p>
+      <br>
+      <div [ngSwitch]="p.stock" [ngClass]="{'text-danger': p.stock == 0, 'text-warning': p.stock == 1}">
+        <p *ngSwitchCase="0">Out Of Stock!</p>
+        <p *ngSwitchCase="1">Last Item!</p>
+        <p *ngSwitchDefault>Stock: {{p.stock}}</p>
+      </div>
+      <p>Price: {{p.price | usdToEgp}} EGP</p>
+      <input type="number" style="width: 50px;" #Count>
+      <br><br>
+      <button (click)="Buy(p, Count.value)" [disabled]="p.stock === 0" type="button" class="btn btn-primary">Buy</button>
+      <br>
+      <!-- <a [routerLink]="['/order', p.id]" class="btn btn-dark">See More</a> -->
+      <button class="btn btn-dark" (click)="goToDetails(p.id)"> See More</button>
+      <button class="btn btn-dark" (click)="DeleteById(p.id)"> Delete</button>
+
+    </div>
+  </div>
+</div>
+<!-- <h2>Total Price:{{TotalPrice|usdToEgp}} EGP</h2> -->
